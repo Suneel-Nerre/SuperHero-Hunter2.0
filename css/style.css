@@ -6,4 +6,23 @@
     height: 50px;
     width: 100%;
     background-color: aqua;
+    justify-content: space-between;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#logo{
+    width: 40px;
+}
+
+#title{
+    font-size: 30px;
+}
+
+.navbar a{
+    text-decoration: none;
 }
