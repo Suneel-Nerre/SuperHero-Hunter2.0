@@ -15,6 +15,11 @@
     align-items: center;
 }
 
+.flex-col{
+    display: flex;
+    flex-direction: column;
+}
+
 #logo{
     width: 40px;
 }
@@ -25,4 +30,15 @@
 
 .navbar a{
     text-decoration: none;
+    color: black;
+}
+
+#search-bar-container{
+    display: flex;
+    justify-content: center;
+}
+
+#search-bar{
+    min-width: 500px;
+    height: 30px;
 }
