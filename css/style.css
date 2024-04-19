@@ -28,6 +28,18 @@
     font-size: 30px;
 }
 
+.nav-btn{
+    width: 100px;
+    height: 35px;
+    font-size: 20px;
+}
+
+#favorite-btn{
+    width: 100px;
+    height: 35px;
+    font-size: 20px;
+}
+
 .navbar a{
     text-decoration: none;
     color: black;
@@ -41,4 +53,8 @@
 #search-bar{
     min-width: 500px;
     height: 30px;
+}
+
+#search-btn{
+    height: 35px;
 }
