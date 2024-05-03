@@ -1,38 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SuperHero Hunter</title>
-
-    <!-- styles -->
+    <title>Superhero Hunter</title>
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="./images/ironman.png">
+    <!-- External stylesheets -->
     <link rel="stylesheet" href="./css/style.css">
 </head>
-<body class="flex-col">
-    <!-- navbar -->
-    <nav class="navbar flex-row">
-        <div class="navbar-title flex-row">
-            <img id="logo" src="./images/iron man logo.png" alt="logo">
-            <a href="./index.html">
-                <span id="title">Superhero hunter</span>
-            </a>
-        </div>
-        <div class="nav-btn">
-            <a href="./favorites.html">
-                <button id="favorite-btn">favorites</button>
-            </a>
-        </div>
-    </nav>
-    
-    <!-- Search bar and results -->
-    <div class="flex-col">
-        <div class="flex-row" id="search-bar-container">
-            <input id="search-bar" type="text" placeholder="Search for superheros">
-            <button id="search-btn">Search</button>
-        </div>
-        <ul class="flex-col" id="search-results">
 
-        </ul>
+<body>
+    <div class="container">
+        <div class="nav-bar">
+            <div class="logo-and-title">
+                <img src="./images/iron man logo.png" alt="iron man logo" id="logo">
+                <h1 id="title">Superhero Hunter</h1>
+            </div>
+            <div>
+                <button id="fav-btn">Favorites</button>
+            </div>
+        </div>
+        <div class="search-field">
+            <div class="search-bar">
+                <input type="text">
+            </div>
+            <div class="search-results">
+                <ul>
+                    <li>Ironman</li>
+                    <li>Wolverine</li>
+                    <li>Thor</li>
+                    <li>Hulk</li>
+                    <li>Captain America</li>
+                    <li>Spider-man</li>
+                    <li>Doctor Strange</li>
+                </ul>
+            </div>
+        </div>
     </div>
+    <script src="./js/script.js"></script>
 </body>
+
 </html>
