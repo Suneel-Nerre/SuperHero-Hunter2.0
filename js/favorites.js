@@ -1,0 +1,1 @@
+console.log("successfully linked script file with html file!");

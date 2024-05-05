@@ -27,6 +27,10 @@ body {
     align-items: center;
 }
 
+.logo-and-title a{
+    text-decoration: none;
+}
+
 #logo {
     height: 55px;
     padding-left: 10px;
@@ -37,7 +41,7 @@ body {
     color: #eae7dc;
 }
 
-#fav-btn {
+.fav-btn {
     height: 35px;
     width: 100px;
     margin-right: 12px;
