@@ -91,6 +91,14 @@ body {
     align-items: center;
 }
 
+.image-and-name a{
+    text-decoration: none;
+}
+
+.hero-name{
+    color: white;
+}
+
 .add-btn{
     height: 45px;
     padding: 0 10px;
