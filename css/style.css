@@ -19,7 +19,6 @@ body {
     height: 60px;
     width: 100%;
     background-color: #024950;
-    /* padding-right: 10px; */
 }
 
 .logo-and-title {
@@ -53,20 +52,27 @@ body {
     padding: 20px;
 }
 
+.search-bar{
+    margin-right: 15px;
+}
+
 .search-bar input {
     height: 35px;
     width: 100%;
-    /* padding: 20px; */
+    font-size: 22px;
+    padding-left: 10px;
 }
 
 .search-results{
     padding: 0;
+
 }
 
 .search-results li {
     list-style: none;
-    background-color: red;
     height: 100px;
+    background-color: lightslategray;
+    padding-right: 10px;
 }
 
 .single-search-result{
@@ -83,4 +89,9 @@ body {
 .image-and-name{
     display: flex;
     align-items: center;
+}
+
+.add-btn{
+    height: 45px;
+    padding: 0 10px;
 }
