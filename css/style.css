@@ -52,18 +52,18 @@ body {
     padding: 20px;
 }
 
-.search-bar{
+.search-bar-container{
     margin-right: 15px;
 }
 
-.search-bar input {
+#search-bar{
     height: 35px;
     width: 100%;
     font-size: 22px;
     padding-left: 10px;
 }
 
-.search-results{
+#search-results{
     padding: 0;
 
 }
