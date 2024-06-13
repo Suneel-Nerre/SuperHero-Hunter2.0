@@ -147,3 +147,19 @@ function addToFavourites(){
         this.innerHTML = '<i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to Favourites';
     }
 }
+
+function addInfoInLocalStorage(){
+    let heroInfo = {
+        name: this.parentElement.parentElement.parentElement.children[2].children[0].innerHTML,
+          description: this.parentElement.parentElement.parentElement.children[2].children[1].innerHTML,
+          comics: this.parentElement.parentElement.parentElement.children[2].children[2].innerHTML,
+          series: this.parentElement.parentElement.parentElement.children[2].children[3].innerHTML,
+          stories: this.parentElement.parentElement.parentElement.children[2].children[4].innerHTML,
+          portraitImage: this.parentElement.parentElement.parentElement.children[2].children[5].innerHTML,
+          id: this.parentElement.parentElement.parentElement.children[2].children[6].innerHTML,
+          landscapeImage: this.parentElement.parentElement.parentElement.children[2].children[7].innerHTML,
+          squareImage: this.parentElement.parentElement.parentElement.children[2].children[8].innerHTML
+    }
+
+    localStorage.setItem("heroInfo", JSON.stringify(heroInfo));
+}
