@@ -27,7 +27,7 @@ window.addEventListener("load", function() {
                 <span class="comics">Comics : ${character.comics}</span>
                 <span class="series">Series : ${character.series}</span>
                 <span class="stories">Stories : ${character.stories}</span>
-                <a class="character-info" href="./more-info.html">
+                <a class="character-info" href="./info.html">
                         <button class="btn"><i class="fa-solid fa-circle-info"></i> &nbsp; More Info</button>
                 </a>
                 <div style="display:none;">

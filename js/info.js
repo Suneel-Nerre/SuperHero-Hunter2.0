@@ -51,3 +51,67 @@ window.addEventListener("load", function () {
         addEvent();
 })
 
+function addEvent(){
+    let favouriteButton = document.querySelector('.add-to-fav-btn');
+    favouriteButton.addEventListener("click", addToFavourites);
+}
+
+function addToFavourites(){
+    if(this.innerHTML == '<i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to Favourites'){
+        let heroInfo = {
+            name: this.parentElement.children[3].children[0].innerHTML,
+            description: this.parentElement.children[3].children[8].innerHTML,
+            comics: this.parentElement.children[3].children[4].innerHTML,
+            series: this.parentElement.children[3].children[5].innerHTML,
+            stories: this.parentElement.children[3].children[6].innerHTML,
+            portraitImage: this.parentElement.children[3].children[1].innerHTML,
+            id: this.parentElement.children[3].children[3].innerHTML,
+            landscapeImage: this.parentElement.children[3].children[2].innerHTML,
+            squareImage: this.parentElement.children[3].children[7].innerHTML
+        }
+
+        let favouritesArray = localStorage.getItem("favouriteCharacters");
+
+        if(favouritesArray == null){
+            favouritesArray = [];
+        }else{
+            favouritesArray = JSON.parse(localStorage.getItem("favouriteCharacters"));
+        }
+
+        let favouritesCharacterIDs = localStorage.getItem("favouritesCharacterIDs");
+
+        if(favouritesCharacterIDs == null){
+            favouritesCharacterIDs = new Map();
+        }else{
+            favouritesCharacterIDs = new Map(JSON.parse(localStorage.getItem("favouritesCharacterIDs")));
+        }
+
+        favouritesCharacterIDs.set(heroInfo.id, true);
+
+        favouritesArray.push(heroInfo);
+
+        localStorage.setItem("favouritesCharacterIDs", JSON.stringify([...favouritesCharacterIDs]));
+
+        localStorage.setItem("favouriteCharacters", JSON.stringify(favouritesArray));
+
+        this.innerHTML = '<i class="fa-solid fa-heart-circle-minus"></i> &nbsp; Remove from Favourites';
+
+    }else{
+        let idOfCharacterToBeRemoveFromFavourites = this.parentElement.children[3].children[3].innerHTML;
+        let favouritesArray = JSON.parse(localStorage.getItem("favouriteCharacters"));
+        let favouritesCharacterIDs = new Map(JSON.parse(localStorage.getItem("favouritesCharacterIDs")));
+        let newFavouritesArray = [];
+        favouritesCharacterIDs.delete(`${idOfCharacterToBeRemoveFromFavourites}`);
+        
+        favouritesArray.forEach((favourite) => {
+            if(idOfCharacterToBeRemoveFromFavourites != favourite.id){
+                newFavouritesArray.push(favourite);
+            }
+        });
+
+        localStorage.setItem("favouriteCharacters", JSON.stringify(newFavouritesArray));
+        localStorage.setItem("favouritesCharacterIDs", JSON.stringify([...favouritesCharacterIDs]));
+
+        this.innerHTML = '<i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to Favourites';
+    }
+}
