@@ -50,8 +50,8 @@ function showSearchedResults(searchedHero) {
         if (count <= 5) {
             let hero = searchedHero[key];
             searchResults.innerHTML += `
-            <li class="flex-row single-search-result">
-                <div class="flex-row img-info">
+            <li class="single-search-result">
+                <div class="img-info">
                         <img src="${hero.thumbnail.path + '/portrait_medium.' + hero.thumbnail.extension}" alt="">
                         <div class="hero-info">
                             <a class="character-info" href="./info.html">
@@ -60,7 +60,6 @@ function showSearchedResults(searchedHero) {
                         </div>
                 </div>
                 <div class="flex-col buttons">
-                        <!-- <button class="btn"><i class="fa-solid fa-circle-info"></i> &nbsp; More Info</button> -->
                         <button class="btn add-to-fav-btn">${favouritesCharacterIDs.has(`${hero.id}`) ? "<i class=\"fa-solid fa-heart-circle-minus\"></i> &nbsp; Remove from Favourites" : "<i class=\"fa-solid fa-heart fav-icon\"></i> &nbsp; Add to Favourites</button>"}
                 </div>
                 <div style="display:none;">
