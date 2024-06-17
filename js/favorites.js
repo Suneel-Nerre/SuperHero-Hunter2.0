@@ -20,7 +20,7 @@ window.addEventListener("load", function() {
 
     favourites.forEach(character => {
         cardContainer.innerHTML += `
-            <div class="flex-col card">
+            <div class="card">
                 <img src="${character.squareImage}" alt="">
                 <span class="name">${character.name}</span>
                 <span class="id">Id : ${character.id}</span>
@@ -28,19 +28,8 @@ window.addEventListener("load", function() {
                 <span class="series">Series : ${character.series}</span>
                 <span class="stories">Stories : ${character.stories}</span>
                 <a class="character-info" href="./info.html">
-                        <button class="btn"><i class="fa-solid fa-circle-info"></i> &nbsp; More Info</button>
+                    <button class="btn"><i class="fa-solid fa-circle-info"></i> &nbsp; More Info</button>
                 </a>
-                <div style="display:none;">
-                        <span>${character.id}</span>
-                        <span>${character.name}</span>
-                        <span>${character.comics}</span>
-                        <span>${character.series}</span>
-                        <span>${character.stories}</span>
-                        <span>${character.description}</span>
-                        <span>${character.landscapeImage}</span>
-                        <span>${character.portraitImage}</span>
-                        <span>${character.squareImage}</span>
-                </div>
                 <button class="btn remove-btn"><i class="fa-solid fa-heart-circle-minus"></i> &nbsp; Remove from Favourites</button>
             </div>
         `
