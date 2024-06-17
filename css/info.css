@@ -1,0 +1,30 @@
+#info-container{
+    background-color: white;
+    width: 60%;
+    margin: 5px;
+    border-radius: 10px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.info{
+    display: flex;
+    justify-content: center;
+}
+
+.hero-img-and-more-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hero-img{
+    width: 100px;
+}
+
+.hero-name{
+    color: black;
+}

@@ -12,6 +12,8 @@
     border-radius: 5px;
     margin: 2px;
     background-color: white;
+    height: auto;
+    width: 250px;
 }
 
 .btn{
@@ -22,4 +24,8 @@
     margin: 2px;
     width: 200px;
     height: 30px;
+}
+
+.name{
+    text-align: center;
 }
