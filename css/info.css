@@ -1,6 +1,5 @@
 #info-container{
     background-color: white;
-    width: 60%;
     margin: 5px;
     border-radius: 10px;
     align-items: center;
@@ -10,6 +9,7 @@
 }
 
 .info{
+    width: 60%;
     display: flex;
     justify-content: center;
 }

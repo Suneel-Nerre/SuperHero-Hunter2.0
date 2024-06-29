@@ -3,11 +3,11 @@ let info = document.getElementById('info-container');
 let heroInfo = JSON.parse(localStorage.getItem("heroInfo"));
 
 window.addEventListener("load", function () {
-    let favouritesCharacterIDs = this.localStorage.getItem("favouritesCharacterIDs");
+    let favouritesCharacterIDs = localStorage.getItem("favouritesCharacterIDs");
     if (favouritesCharacterIDs == null) {
         favouritesCharacterIDs = new Map();
     } else if (favouritesCharacterIDs != null) {
-        favouritesCharacterIDs = new Map(JSON.parse(this.localStorage.getItem("favouritesCharacterIDs")));
+        favouritesCharacterIDs = new Map(JSON.parse(localStorage.getItem("favouritesCharacterIDs")));
     }
 
     info.innerHTML = `
@@ -33,6 +33,17 @@ window.addEventListener("load", function () {
                 <b>Discription:</b>
                 <p>${heroInfo.description != "" ? heroInfo.description : "No Description Available"}</p>
             </div>
+            <div style="display:none;">
+                    <span>${heroInfo.name}</span>
+                    <span>${heroInfo.portraitImage}</span>
+                    <span>${heroInfo.landscapeImage}</span>
+                    <span>${heroInfo.id}</span>
+                    <span>${heroInfo.comics}</span>
+                    <span>${heroInfo.series}</span>
+                    <span>${heroInfo.stories}</span>
+                    <span>${heroInfo.squareImage}</span>
+                    <span>${heroInfo.description}</span>
+               </div>
             <button class="btn add-to-fav-btn">${favouritesCharacterIDs.has(`${heroInfo.id}`) ? "<i class=\"fa-solid fa-heart-circle-minus\"></i> &nbsp; Remove from Favourites" : "<i class=\"fa-solid fa-heart fav-icon\"></i> &nbsp; Add to Favourites</button>"}
         `
 
@@ -46,6 +57,7 @@ function addEvent(){
 
 function addToFavourites(){
     if(this.innerHTML == '<i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to Favourites'){
+        
         let heroInfo = {
             name: this.parentElement.children[3].children[0].innerHTML,
             description: this.parentElement.children[3].children[8].innerHTML,
@@ -56,7 +68,7 @@ function addToFavourites(){
             id: this.parentElement.children[3].children[3].innerHTML,
             landscapeImage: this.parentElement.children[3].children[2].innerHTML,
             squareImage: this.parentElement.children[3].children[7].innerHTML
-        }
+       }
 
         let favouritesArray = localStorage.getItem("favouriteCharacters");
 
