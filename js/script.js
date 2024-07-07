@@ -34,7 +34,7 @@ async function searchHeros(textSearched) {
         .then(data => showSearchedResults(data.data.results)) // sending searched results to show in HTML
 }
 
-// function to display searched results in DOM
+// function to display searched results
 function showSearchedResults(searchedHero) {
     let favouritesCharacterIDs = localStorage.getItem("favouritesCharacterIDs");
     if (favouritesCharacterIDs == null) {
