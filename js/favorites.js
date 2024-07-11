@@ -1,24 +1,28 @@
 // get container from DOM
 let cardContainer = document.getElementById('fav-container');
 
+//this event listener will be executed when page is loaded
 window.addEventListener("load", function() {
-    let favourites = localStorage.getItem("favouriteCharacters");
+    let favorites = localStorage.getItem("favoriteCharacters");
 
-    if(favourites == null){
-        cardContainer.innerHTML = "<p class=\"no-characters\">No characters present in Favourites</p>";
+    //if there are no favorite characters then return
+    if(favorites == null){
+        cardContainer.innerHTML = "<p class=\"no-characters\">No characters present in Favorites</p>";
         return;
     }else{
-        favourites = JSON.parse(this.localStorage.getItem("favouriteCharacters"));
+        favorites = JSON.parse(this.localStorage.getItem("favoriteCharacters"));
     }
 
-    if(favourites.length == 0){
-        cardContainer.innerHTML = "<p class=\"no-characters\">No characters present in Favourites</p>";
+    //this is in case all character are removed from favorites
+    if(favorites.length == 0){
+        cardContainer.innerHTML = "<p class=\"no-characters\">No characters present in Favorites</p>";
         return;
     }
 
     cardContainer.innerHTML = "";
 
-    favourites.forEach(character => {
+    //append each favorite character to DOM
+    favorites.forEach(character => {
         cardContainer.innerHTML += `
             <div class="flex-col card">
                     <img src="${character.squareImage}" alt="">
@@ -41,46 +45,51 @@ window.addEventListener("load", function() {
                          <span>${character.portraitImage}</span>
                          <span>${character.squareImage}</span>
                     </div>
-                    <button class="btn remove-btn"><i class="fa-solid fa-heart-circle-minus"></i> &nbsp; Remove from Favourites</button>
+                    <button class="btn remove-btn"><i class="fa-solid fa-heart-circle-minus"></i> &nbsp; Remove from Favorites</button>
                </div>
         `
     })
     addEvent();
 })
 
+//add event listeners to buttons
 function addEvent(){
     let removeBtn = document.querySelectorAll(".remove-btn");
-    removeBtn.forEach((btn) => btn.addEventListener("click", removeCharacterFromFavourites))
+    removeBtn.forEach((btn) => btn.addEventListener("click", removeCharacterFromFavorites))
 
     let characterInfo = document.querySelectorAll(".character-info");
     characterInfo.forEach((character) => character.addEventListener("click", addInfoInLocalStorage));
 }
 
-function removeCharacterFromFavourites(){
-    let idOfCharacterToBeDeleted = this.parentElement.children[2].innerHTML.substring(5);
+//remove character from favorites when clicked on remove button
+function removeCharacterFromFavorites(){
+    let idOfCharacterToBeRemoved = this.parentElement.children[2].innerHTML.substring(5);
 
-    let favourites = JSON.parse(localStorage.getItem("favouriteCharacters"));
+    let favorites = JSON.parse(localStorage.getItem("favoriteCharacters"));
 
-    let favouritesCharacterIDs = new Map(JSON.parse(localStorage.getItem("favouritesCharacterIDs")));
+    let favoritesCharacterIDs = new Map(JSON.parse(localStorage.getItem("favoritesCharacterIDs")));
 
-    favouritesCharacterIDs.delete(`${idOfCharacterToBeDeleted}`);
-
-    favourites.forEach(function (favourite, index){
-        if(favourite.id == idOfCharacterToBeDeleted){
-            favourites.splice(index, 1);
+    //delete id from favorites
+    favoritesCharacterIDs.delete(`${idOfCharacterToBeRemoved}`);
+    favorites.forEach(function (favorite, index){
+        if(favorite.id == idOfCharacterToBeRemoved){
+            favorites.splice(index, 1);
         }
     });
 
-    if(favourites.length == 0) {
-        cardContainer.innerHTML = "<p class=\"no-characters\">No characters present in Favourites</p>";
+    //if no characters left in favorites then display text on screen
+    if(favorites.length == 0) {
+        cardContainer.innerHTML = "<p class=\"no-characters\">No characters present in Favorites</p>";
     }
 
-    localStorage.setItem("favouriteCharacters", JSON.stringify(favourites));
-    localStorage.setItem("favouritesCharacterIDs", JSON.stringify([...favouritesCharacterIDs]));
+    //update local storage after removing character from favorites
+    localStorage.setItem("favoriteCharacters", JSON.stringify(favorites));
+    localStorage.setItem("favoritesCharacterIDs", JSON.stringify([...favoritesCharacterIDs]));
 
     this.parentElement.remove();
 }
 
+//adding info of the character in local storage when clicked on info button
 function addInfoInLocalStorage(){
     let heroInfo = {
         name: this.parentElement.children[7].children[1].innerHTML,

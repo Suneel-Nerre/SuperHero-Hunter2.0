@@ -1,13 +1,16 @@
+//select elements from DOM
 let info = document.getElementById('info-container');
+
 
 let heroInfo = JSON.parse(localStorage.getItem("heroInfo"));
 
 window.addEventListener("load", function () {
-    let favouritesCharacterIDs = localStorage.getItem("favouritesCharacterIDs");
-    if (favouritesCharacterIDs == null) {
-        favouritesCharacterIDs = new Map();
-    } else if (favouritesCharacterIDs != null) {
-        favouritesCharacterIDs = new Map(JSON.parse(localStorage.getItem("favouritesCharacterIDs")));
+    //getting favorite character ids to display appropriate button 
+    let favoritesCharacterIDs = localStorage.getItem("favoritesCharacterIDs");
+    if (favoritesCharacterIDs == null) {
+        favoritesCharacterIDs = new Map();
+    } else if (favoritesCharacterIDs != null) {
+        favoritesCharacterIDs = new Map(JSON.parse(localStorage.getItem("favoritesCharacterIDs")));
     }
 
     info.innerHTML = `
@@ -44,20 +47,22 @@ window.addEventListener("load", function () {
                     <span>${heroInfo.squareImage}</span>
                     <span>${heroInfo.description}</span>
                </div>
-            <button class="btn add-to-fav-btn">${favouritesCharacterIDs.has(`${heroInfo.id}`) ? "<i class=\"fa-solid fa-heart-circle-minus\"></i> &nbsp; Remove from Favourites" : "<i class=\"fa-solid fa-heart fav-icon\"></i> &nbsp; Add to Favourites</button>"}
+            <button class="btn add-to-fav-btn">${favoritesCharacterIDs.has(`${heroInfo.id}`) ? "<i class=\"fa-solid fa-heart-circle-minus\"></i> &nbsp; Remove from Favorites" : "<i class=\"fa-solid fa-heart fav-icon\"></i> &nbsp; Add to Favorites</button>"}
         `
 
         addEvent();
 })
 
+//add event listeners to buttons
 function addEvent(){
-    let favouriteButton = document.querySelector('.add-to-fav-btn');
-    favouriteButton.addEventListener("click", addToFavourites);
+    let favoriteButton = document.querySelector('.add-to-fav-btn');
+    favoriteButton.addEventListener("click", addToFavorites);
 }
 
-function addToFavourites(){
-    if(this.innerHTML == '<i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to Favourites'){
-        
+// this function will be called when add to favorites/ remove from favorites button is clicked
+function addToFavorites(){
+    if(this.innerHTML == '<i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to Favorites'){
+        //create a new object and push it to favorites array
         let heroInfo = {
             name: this.parentElement.children[3].children[0].innerHTML,
             description: this.parentElement.children[3].children[8].innerHTML,
@@ -70,48 +75,58 @@ function addToFavourites(){
             squareImage: this.parentElement.children[3].children[7].innerHTML
        }
 
-        let favouritesArray = localStorage.getItem("favouriteCharacters");
+        //getting favorites array which contains objects of favorite characters, null incase of no favorites are present
+        let favoritesArray = localStorage.getItem("favoriteCharacters");
 
-        if(favouritesArray == null){
-            favouritesArray = [];
+        if(favoritesArray == null){
+            favoritesArray = [];
         }else{
-            favouritesArray = JSON.parse(localStorage.getItem("favouriteCharacters"));
+            favoritesArray = JSON.parse(localStorage.getItem("favoriteCharacters"));
         }
 
-        let favouritesCharacterIDs = localStorage.getItem("favouritesCharacterIDs");
+        //getting favorite IDs which contains IDs of favorite characters, null incase of no IDs are present
+        let favoritesCharacterIDs = localStorage.getItem("favoritesCharacterIDs");
 
-        if(favouritesCharacterIDs == null){
-            favouritesCharacterIDs = new Map();
+        if(favoritesCharacterIDs == null){
+            favoritesCharacterIDs = new Map();
         }else{
-            favouritesCharacterIDs = new Map(JSON.parse(localStorage.getItem("favouritesCharacterIDs")));
+            favoritesCharacterIDs = new Map(JSON.parse(localStorage.getItem("favoritesCharacterIDs")));
         }
 
-        favouritesCharacterIDs.set(heroInfo.id, true);
+        //setting the value of ID to true
+        favoritesCharacterIDs.set(heroInfo.id, true);
 
-        favouritesArray.push(heroInfo);
+        //pushing hero object to favorites array
+        favoritesArray.push(heroInfo);
 
-        localStorage.setItem("favouritesCharacterIDs", JSON.stringify([...favouritesCharacterIDs]));
+        //converting favorite characters and their ids to string and storing them in local storage
+        localStorage.setItem("favoritesCharacterIDs", JSON.stringify([...favoritesCharacterIDs]));
+        localStorage.setItem("favoriteCharacters", JSON.stringify(favoritesArray));
 
-        localStorage.setItem("favouriteCharacters", JSON.stringify(favouritesArray));
-
-        this.innerHTML = '<i class="fa-solid fa-heart-circle-minus"></i> &nbsp; Remove from Favourites';
+        this.innerHTML = '<i class="fa-solid fa-heart-circle-minus"></i> &nbsp; Remove from Favorites';
 
     }else{
-        let idOfCharacterToBeRemoveFromFavourites = this.parentElement.children[3].children[3].innerHTML;
-        let favouritesArray = JSON.parse(localStorage.getItem("favouriteCharacters"));
-        let favouritesCharacterIDs = new Map(JSON.parse(localStorage.getItem("favouritesCharacterIDs")));
-        let newFavouritesArray = [];
-        favouritesCharacterIDs.delete(`${idOfCharacterToBeRemoveFromFavourites}`);
+        //remove character from favorites
+        //getting id of the character to be removed
+        let idOfCharacterToBeRemoveFromFavorites = this.parentElement.children[3].children[3].innerHTML;
+        let favoritesArray = JSON.parse(localStorage.getItem("favoriteCharacters"));
+        let favoritesCharacterIDs = new Map(JSON.parse(localStorage.getItem("favoritesCharacterIDs")));
         
-        favouritesArray.forEach((favourite) => {
-            if(idOfCharacterToBeRemoveFromFavourites != favourite.id){
-                newFavouritesArray.push(favourite);
+        let newFavoritesArray = [];
+
+        //deleting id from favorites
+        favoritesCharacterIDs.delete(`${idOfCharacterToBeRemoveFromFavorites}`);
+        
+        favoritesArray.forEach((favorite) => {
+            if(idOfCharacterToBeRemoveFromFavorites != favorite.id){
+                newFavoritesArray.push(favorite);
             }
         });
 
-        localStorage.setItem("favouriteCharacters", JSON.stringify(newFavouritesArray));
-        localStorage.setItem("favouritesCharacterIDs", JSON.stringify([...favouritesCharacterIDs]));
+        //update local storage after removing character
+        localStorage.setItem("favoriteCharacters", JSON.stringify(newFavoritesArray));
+        localStorage.setItem("favoritesCharacterIDs", JSON.stringify([...favoritesCharacterIDs]));
 
-        this.innerHTML = '<i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to Favourites';
+        this.innerHTML = '<i class="fa-solid fa-heart fav-icon"></i> &nbsp; Add to Favorites';
     }
 }
