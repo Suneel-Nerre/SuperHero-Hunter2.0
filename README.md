@@ -8,7 +8,7 @@
 - Search for Marvel superheros 
 - View detailed information of superheros
 - Add superheros into favorite list
-- Unfavorite superheros from favorite list
+- Remove superheros from favorite list
 
 ### Tools used:
 - HTML
@@ -24,4 +24,15 @@
 - Click on remove from favorites to remove any superhero from the favorites list
 
 
-### Screenshots of the project or GIF showing how project works
+### Screenshots 
+- Search page
+![Search page](<images/Screenshots/Search page.png>)
+
+- Search results
+![Search results](<images/Screenshots/Search results.png>)
+
+- Info page
+![Info page](<images/Screenshots/Info page.png>)
+
+- Favorites page
+![Favorites page](<images/Screenshots/Favorites page.png>)
